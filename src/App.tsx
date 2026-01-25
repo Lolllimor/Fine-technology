@@ -24,7 +24,7 @@ export default function App() {
     >
       <div className="relative z-10 text-center">
         <h1 className="text-5xl md:text-7xl font-bold text-white drop-shadow-lg">
-          IDRIS IBIKUNLE OLORUNNIMBE
+          FINE TECHNOLOGY
         </h1>
         <p className="mt-4 text-lg md:text-2xl text-gray-300">
           Something exciting is coming soon
