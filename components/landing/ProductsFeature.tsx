@@ -55,7 +55,7 @@ export function ProductsFeature() {
             src={images.technician}
             alt=""
             fill
-            className="object-cover object-top"
+            className="object-cover object-top hidden"
             sizes="(max-width:1024px) 100vw, 50vw"
           />
         </div>
