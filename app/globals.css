@@ -20,7 +20,12 @@
   --color-ft-navy-deep: var(--ft-navy-deep);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--ft-navy);
   color: var(--foreground);
+  overflow-x: hidden;
 }

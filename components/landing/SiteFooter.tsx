@@ -11,11 +11,11 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="bg-black py-16 text-white">
+    <footer className="bg-black py-12 text-white sm:py-16">
       <div className={sectionInner}>
-        <div className="flex flex-col gap-8 border-b border-white/10 pb-12 lg:flex-row lg:items-center lg:justify-between">
-          <div className="max-w-md">
-            <h2 className="text-xl font-semibold sm:text-2xl">
+        <div className="flex flex-col gap-6 border-b border-white/10 pb-10 sm:gap-8 sm:pb-12 lg:flex-row lg:items-center lg:justify-between">
+          <div className="min-w-0 max-w-md">
+            <h2 className="text-lg font-semibold sm:text-2xl">
               Request a consultation session
             </h2>
             <p className="mt-2 text-sm text-white/65">
@@ -26,7 +26,7 @@ export function SiteFooter() {
           </div>
           <form
             onSubmit={onNewsletter}
-            className="flex w-full max-w-md items-stretch gap-0 overflow-hidden rounded-full border border-white/15 bg-[#0a0a0a] pl-4"
+            className="flex w-full max-w-md flex-col gap-2 overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0a] p-2 sm:flex-row sm:items-stretch sm:gap-0 sm:rounded-full sm:p-0 sm:pl-4"
           >
             <label className="sr-only" htmlFor="footer-email">
               Email
@@ -36,18 +36,18 @@ export function SiteFooter() {
               type="email"
               name="email"
               placeholder="Your email"
-              className="min-w-0 flex-1 bg-transparent py-3 text-sm text-white outline-none placeholder:text-white/40"
+              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/40 sm:border-0 sm:py-3 sm:pl-0 sm:pr-2"
             />
             <button
               type="submit"
-              className="shrink-0 bg-green-400 px-5 py-3 text-sm font-semibold text-black transition hover:bg-green-300"
+              className="shrink-0 rounded-xl bg-green-400 px-5 py-3 text-sm font-semibold text-black transition hover:bg-green-300 sm:rounded-none sm:rounded-r-full"
               aria-label="Submit email"
             >
               →
             </button>
           </form>
         </div>
-        <div className="grid gap-10 py-12 sm:grid-cols-3">
+        <div className="grid gap-8 py-10 sm:grid-cols-3 sm:gap-10 sm:py-12">
           <div>
             <p className="text-sm text-white/55">
               © {new Date().getFullYear()} {brand.name}. All rights reserved.
@@ -63,7 +63,7 @@ export function SiteFooter() {
             <p className="mt-2 text-sm text-white/70">{brand.address}</p>
           </div>
         </div>
-        <div className="flex justify-end gap-4 pb-4 text-sm">
+        <div className="flex flex-wrap justify-center gap-4 pb-4 text-sm sm:justify-end">
           <Link
             href="https://twitter.com"
             className="text-white/50 hover:text-white"

@@ -3,24 +3,24 @@
 import { useState } from "react";
 import { images, testimonials } from "@/content/landing";
 import { sectionInner } from "@/lib/section";
-import Image from "next/image";
+import { MarketingImage } from "@/components/landing/MarketingImage";
 
 export function Testimonials() {
   const [i, setI] = useState(0);
   const t = testimonials[i];
 
   return (
-    <section className="bg-linear-to-bl from-[#30EAA9] to-[#0798E7] py-16 sm:py-20">
+    <section className="bg-linear-to-bl from-[#30EAA9] to-[#0798E7] py-12 sm:py-16 md:py-20">
       <div className={sectionInner}>
         <div className="mx-auto w-full max-w-8xl text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-white/90">
             Testimonials
           </p>
-          <h2 className="mt-3 text-2xl font-bold text-[#023048] sm:text-3xl lg:text-5xl max-w-[680px] mx-auto">
+          <h2 className="mx-auto mt-3 max-w-[680px] px-1 text-xl font-bold text-[#023048] sm:text-3xl lg:text-5xl">
             <span className="block sm:inline">Hear From Those Who Power </span>
             <span className="block sm:inline">the Future With Us</span>
           </h2>
-          <div className="mt-8 flex justify-center gap-2">
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
             {testimonials.map((item) => (
               <span
                 key={item.name}
@@ -37,7 +37,7 @@ export function Testimonials() {
           <div className="relative mt-10 w-full">
             <div className="flex flex-col gap-8 md:flex-row md:items-stretch w-full">
               <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-3xl md:h-auto md:min-h-0 md:w-[309px]">
-                <Image
+                <MarketingImage
                   src={images.batteryRack}
                   alt={t.name}
                   fill
@@ -45,7 +45,7 @@ export function Testimonials() {
                   sizes="(max-width: 768px) 100vw, 309px"
                 />
               </div>
-              <figure className="flex w-full min-w-0 max-w-2xl flex-1 flex-col rounded-3xl bg-white p-8 text-left shadow-xl sm:p-10 md:mx-0">
+              <figure className="flex w-full min-w-0 max-w-2xl flex-1 flex-col rounded-2xl bg-white p-6 text-left shadow-xl sm:rounded-3xl sm:p-10 md:mx-0">
                 <blockquote className="text-left text-base leading-relaxed text-slate-700 sm:text-lg">
                   “{t.quote}”
                 </blockquote>
@@ -55,7 +55,7 @@ export function Testimonials() {
                 </figcaption>
               </figure>
               <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-3xl md:h-auto md:min-h-0 md:w-[309px]">
-                <Image
+                <MarketingImage
                   src={images.batteryRack}
                   alt={t.name}
                   fill

@@ -18,6 +18,11 @@ export const metadata: Metadata = {
     "Indigenous tech and contracting for solar, inverters, UPS, and integrated power backup across Nigeria.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{

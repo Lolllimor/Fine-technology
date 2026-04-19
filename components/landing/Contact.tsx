@@ -20,10 +20,10 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 bg-[#001f3f] py-16 sm:py-20">
-      <div className={`${sectionInner} grid gap-12 lg:grid-cols-2 lg:gap-16`}>
-        <div>
-          <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl">
+    <section id="contact" className="scroll-mt-24 bg-[#001f3f] py-12 sm:py-16 md:py-20">
+      <div className={`${sectionInner} grid min-w-0 gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16`}>
+        <div className="min-w-0">
+          <h2 className="text-xl font-bold text-white sm:text-3xl lg:text-4xl">
             Ready to Upgrade Your Power Experience?
           </h2>
           <p className="mt-4 text-base leading-6 text-white/75">
@@ -51,10 +51,10 @@ export function Contact() {
             </li>
           </ul>
         </div>
-        <div className="rounded-3xl bg-linear-to-br from-cyan-400 via-teal-400 to-green-400 p-[2px] shadow-xl">
+        <div className="min-w-0 rounded-2xl bg-linear-to-br from-cyan-400 via-teal-400 to-green-400 p-[2px] shadow-xl sm:rounded-3xl">
           <form
             onSubmit={onSubmit}
-            className="flex flex-col gap-4 rounded-[22px] bg-[#001428] p-6 sm:p-8"
+            className="flex min-w-0 flex-col gap-4 rounded-[18px] bg-[#001428] p-5 sm:rounded-[22px] sm:p-8"
           >
             <label className="flex flex-col gap-2 text-sm font-medium text-white/90">
               Full Name
@@ -110,7 +110,7 @@ export function Contact() {
             </label>
             <button
               type="submit"
-              className="mt-2 rounded-xl bg-[#001f3f] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#002a52]"
+              className="mt-2 w-full rounded-xl bg-[#001f3f] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#002a52] sm:w-auto"
             >
               Submit Consultation Request
             </button>

@@ -10,7 +10,7 @@ import { Testimonials } from "@/components/landing/Testimonials";
 
 export default function Home() {
   return (
-    <div className="flex min-h-full flex-col bg-[#023048] font-sans">
+    <div className="flex min-h-full min-w-0 flex-col bg-[#023048] font-sans pb-[env(safe-area-inset-bottom)]">
       <Hero />
       <LandingCards />
       <About />

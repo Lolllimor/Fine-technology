@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { MarketingImage } from "@/components/landing/MarketingImage";
 import Link from "next/link";
 import { IconCheck } from "@/components/landing/icons";
 import { images, productChecklist, productsSection } from "@/content/landing";
@@ -8,21 +8,20 @@ export function ProductsFeature() {
   return (
     <section className="relative min-h-[520px] lg:min-h-[788px] overflow-hidden bg-[#001428]">
       <div className="absolute inset-0">
-        <Image
+        <MarketingImage
           src={images.solarFarm}
           alt=""
           fill
           priority
-          unoptimized
           className="object-cover"
           sizes="100vw"
         />
       
       </div>
       <div
-        className={`${sectionInner} relative z-10 grid items-center gap-10 py-16 sm:gap-12 sm:py-24 lg:grid-cols-2`}
+        className={`${sectionInner} relative z-10 grid items-center gap-8 py-12 sm:gap-10 sm:py-16 md:gap-12 md:py-24 lg:grid-cols-2`}
       >
-        <div className="rounded-3xl bg-white p-8 shadow-2xl sm:p-10">
+        <div className="rounded-2xl bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8 md:p-10">
           <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
             {productsSection.eyebrow}
           </p>
@@ -42,21 +41,21 @@ export function ProductsFeature() {
               </li>
             ))}
           </ul>
-          <div className="mt-10">
+          <div className="mt-8 sm:mt-10">
             <Link
               href="#contact"
-              className="inline-flex rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95"
+              className="inline-flex w-full justify-center rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95 sm:w-auto sm:px-8"
             >
               {productsSection.ctaLabel}
             </Link>
           </div>
         </div>
-        <div className="relative mt-2 aspect-4/3 min-h-[280px] overflow-hidden rounded-3xl sm:min-h-[320px] lg:mt-0 lg:aspect-auto lg:min-h-[380px]">
-          <Image
+        <div className="relative mt-0 hidden min-h-[380px] overflow-hidden rounded-3xl lg:mt-0 lg:block lg:aspect-auto">
+          <MarketingImage
             src={images.technician}
             alt=""
             fill
-            className="object-cover object-top hidden"
+            className="object-cover object-top"
             sizes="(max-width:1024px) 100vw, 50vw"
           />
         </div>

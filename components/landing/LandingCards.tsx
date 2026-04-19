@@ -1,15 +1,15 @@
-import Image from "next/image";
+import { MarketingImage } from "@/components/landing/MarketingImage";
 import { images } from "@/content/landing";
 import { sectionInner } from "@/lib/section";
 
 export function LandingCards() {
   return (
-    <div className="relative z-20 -mt-16 sm:-mt-20">
+    <div className="relative z-20 -mt-12 sm:-mt-20">
       <div className={sectionInner}>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:items-stretch">
           <div className="relative flex min-h-[112px] rounded-lg bg-linear-to-b from-[#30EAA9] to-[#0798E7] p-[2px] shadow-xl">
             <div className="flex min-h-0 flex-1 items-center gap-4 rounded-[6px] bg-white/95 p-6">
-              <Image
+              <MarketingImage
                 src={images.clientSatisfaction}
                 alt=""
                 width={64}
@@ -36,7 +36,7 @@ export function LandingCards() {
 
           <div className="relative flex min-h-[112px] rounded-lg bg-linear-to-b from-[#30EAA9] to-[#0798E7] p-[2px] shadow-xl">
             <div className="flex min-h-0 flex-1 items-center gap-4 rounded-[8px] bg-white/95 p-6">
-              <Image
+              <MarketingImage
                 src={images.homesPowered}
                 alt=""
                 width={64}
