@@ -23,7 +23,7 @@ export function ProductsFeature() {
         className={`${sectionInner} relative z-10 grid items-center gap-10 py-16 sm:gap-12 sm:py-24 lg:grid-cols-2`}
       >
         <div className="rounded-3xl bg-white p-8 shadow-2xl sm:p-10">
-          <p className="text-sm font-bold uppercase tracking-[0.1em] bg-gradient-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+          <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
             {productsSection.eyebrow}
           </p>
           <h2 className="mt-2 text-2xl font-bold text-[#001f3f] sm:text-3xl lg:text-4xl">
@@ -33,7 +33,7 @@ export function ProductsFeature() {
             {productChecklist.map((line) => (
               <li key={line} className="flex gap-3 text-sm font-semibold text-[#023048]">
                 <span
-                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#30EAA9] to-[#0798E7] text-white"
+                  className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-[#30EAA9] to-[#0798E7] text-white"
                   aria-hidden
                 >
                   <IconCheck className="text-white" />
@@ -45,13 +45,13 @@ export function ProductsFeature() {
           <div className="mt-10">
             <Link
               href="#contact"
-              className="inline-flex rounded-full bg-gradient-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95"
+              className="inline-flex rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-sm font-semibold text-white shadow-md transition hover:opacity-95"
             >
               {productsSection.ctaLabel}
             </Link>
           </div>
         </div>
-        <div className="relative mt-2 aspect-[4/3] min-h-[280px] overflow-hidden rounded-3xl sm:min-h-[320px] lg:mt-0 lg:aspect-auto lg:min-h-[380px]">
+        <div className="relative mt-2 aspect-4/3 min-h-[280px] overflow-hidden rounded-3xl sm:min-h-[320px] lg:mt-0 lg:aspect-auto lg:min-h-[380px]">
           <Image
             src={images.technician}
             alt=""

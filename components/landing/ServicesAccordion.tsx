@@ -23,7 +23,7 @@ export function ServicesAccordion() {
         {/* Row 1 — full width: label + title | intro + CTA (Figma: items-end justify-between) */}
         <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-[520px] space-y-4">
-            <p className="text-sm font-bold uppercase tracking-[0.1em] bg-gradient-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+            <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
               {servicesSection.eyebrow}
             </p>
             <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[48px] lg:leading-[48px]">
@@ -36,7 +36,7 @@ export function ServicesAccordion() {
             </p>
             <Link
               href="#contact"
-              className="inline-flex w-fit shrink-0 rounded-full bg-gradient-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-base font-bold text-white shadow-lg transition hover:opacity-95"
+              className="inline-flex w-fit shrink-0 rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-base font-bold text-white shadow-lg transition hover:opacity-95"
             >
               View All Services
             </Link>
@@ -66,7 +66,7 @@ export function ServicesAccordion() {
                     onClick={() => setOpen(isOpen ? -1 : i)}
                     className={`w-full rounded-xl text-left transition ${
                       isOpen
-                        ? 'relative overflow-hidden bg-gradient-to-br from-[#30EAA9] to-[#0798E7] p-8 text-white shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]'
+                        ? 'relative overflow-hidden bg-linear-to-br from-[#30EAA9] to-[#0798E7] p-8 text-white shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1)]'
                         : 'border border-[#f1f5f9] bg-white p-[25px] text-[#023048] hover:bg-slate-50'
                     }`}
                   >

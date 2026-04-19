@@ -13,7 +13,7 @@ export function Portfolio() {
       <div className={sectionInner}>
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl space-y-4">
-            <p className="text-sm font-bold uppercase tracking-[0.1em] bg-gradient-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+            <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
               {portfolioSection.eyebrow}
             </p>
             <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl lg:leading-tight">
@@ -26,7 +26,7 @@ export function Portfolio() {
             </p>
             <Link
               href="#contact"
-              className="inline-flex rounded-full bg-gradient-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:opacity-95"
+              className="inline-flex rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:opacity-95"
             >
               {portfolioSection.ctaLabel}
             </Link>
@@ -34,7 +34,7 @@ export function Portfolio() {
         </div>
         <div className="mt-12 grid gap-6 lg:grid-cols-12 lg:gap-8">
           <article className="lg:col-span-7">
-            <div className="relative aspect-[16/11] overflow-hidden rounded-2xl bg-[#001428]">
+            <div className="relative aspect-16/11 overflow-hidden rounded-2xl bg-[#001428]">
               <Image
                 src={img(main.imageKey)}
                 alt=""
@@ -54,7 +54,7 @@ export function Portfolio() {
           <div className="flex flex-col gap-6 lg:col-span-5">
             {rest.map((p) => (
               <article key={p.title}>
-                <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#001428]">
+                <div className="relative aspect-16/10 overflow-hidden rounded-2xl bg-[#001428]">
                   <Image 
                     src={img(p.imageKey)}
                     alt=""

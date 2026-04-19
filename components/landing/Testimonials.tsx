@@ -13,7 +13,7 @@ export function Testimonials() {
     <section className="bg-linear-to-bl from-[#30EAA9] to-[#0798E7] py-16 sm:py-20">
       <div className={sectionInner}>
         <div className="mx-auto w-full max-w-8xl text-center">
-          <p className="text-sm font-bold uppercase tracking-[0.1em] text-white/90">
+          <p className="text-sm font-bold uppercase tracking-widest text-white/90">
             Testimonials
           </p>
           <h2 className="mt-3 text-2xl font-bold text-[#023048] sm:text-3xl lg:text-5xl max-w-[680px] mx-auto">

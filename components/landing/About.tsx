@@ -28,12 +28,12 @@ export function About() {
           </div>
 
           <div className="flex min-w-0 flex-col gap-5">
-            <p className="text-sm font-bold uppercase tracking-[0.1em] bg-gradient-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+            <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
               {about.eyebrow}
             </p>
             <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-[2.75rem] lg:leading-[1.15]">
               <span>{about.headlineBefore}</span>
-              <span className="bg-gradient-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
                 {about.headlineAccent}
               </span>
             </h2>
@@ -60,7 +60,7 @@ export function About() {
             <div>
               <Link
                 href="#contact"
-                className="inline-flex rounded-full bg-gradient-to-r from-[#30EAA9] to-[#0798E7] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:opacity-95"
+                className="inline-flex rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:opacity-95"
               >
                 Read Our Story
               </Link>

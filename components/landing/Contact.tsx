@@ -33,7 +33,7 @@ export function Contact() {
             <li className="flex items-start gap-3">
               <IconPhone className="mt-0.5 shrink-0 text-cyan-300" />
               <a
-                href={`tel:${brand.phone.replace(/\s/g, "")}`}
+                href={`tel:${brand.phone.replace(/\s/g, '')}`}
                 className="hover:underline"
               >
                 {brand.phone}
@@ -51,7 +51,7 @@ export function Contact() {
             </li>
           </ul>
         </div>
-        <div className="rounded-3xl bg-gradient-to-br from-cyan-400 via-teal-400 to-green-400 p-[2px] shadow-xl">
+        <div className="rounded-3xl bg-linear-to-br from-cyan-400 via-teal-400 to-green-400 p-[2px] shadow-xl">
           <form
             onSubmit={onSubmit}
             className="flex flex-col gap-4 rounded-[22px] bg-[#001428] p-6 sm:p-8"
