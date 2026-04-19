@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ft-navy: #001f3f;
+  --ft-navy-deep: #001428;
+  --ft-cyan: #22d3ee;
+  --ft-mint: #4ade80;
+  --background: var(--ft-navy);
+  --foreground: #f8fafc;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  /* UI copy: Inter (Next font variable). Hero display uses font-technovier. */
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-technovier: "Technovier", var(--font-inter), system-ui, sans-serif;
+  --color-ft-navy: var(--ft-navy);
+  --color-ft-navy-deep: var(--ft-navy-deep);
 }
 
 body {
-  background: var(--background);
+  background: var(--ft-navy);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
