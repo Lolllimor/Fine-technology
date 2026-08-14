@@ -1,18 +1,32 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, type ReactNode } from "react";
 import { IconEnvelope, IconMapPin, IconPhone } from "@/components/landing/icons";
 import { brand, contactSection } from "@/content/landing";
 import { sectionInner } from "@/lib/section";
 
 const projectTypes = [
-  "Residential solar / backup",
-  "Commercial / office",
+  "Residential Solar",
+  "Commercial / Office",
   "Industrial",
-  "UPS / critical load",
-  "Training / consultancy",
+  "UPS / Critical Load",
+  "Training / Consultancy",
   "Other",
 ] as const;
+
+const fieldClass =
+  "w-full rounded-xl border-0 bg-white px-4 py-3.5 text-sm text-[#023048] outline-none placeholder:text-[#94A3B8] ring-0 transition focus:ring-2 focus:ring-[#023048]/25";
+
+const labelClass =
+  "text-xs font-bold uppercase tracking-wide text-[#023048]";
+
+function ContactIcon({ children }: { children: ReactNode }) {
+  return (
+    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-linear-to-tr from-[#0798E7] to-[#30EAA9] text-white shadow-sm">
+      {children}
+    </span>
+  );
+}
 
 export function Contact() {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -20,76 +34,94 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="scroll-mt-24 bg-[#001f3f] py-12 sm:py-16 md:py-20">
-      <div className={`${sectionInner} grid min-w-0 gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16`}>
+    <section
+      id="contact"
+      className="scroll-mt-24 bg-[#023048] py-12 sm:py-16 md:py-20 lg:flex lg:h-174.25 lg:min-h-174.25 lg:items-center lg:py-0"
+    >
+      <div
+        className={`${sectionInner}  grid w-full min-w-0 items-center gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16`}
+      >
         <div className="min-w-0">
-          <h2 className="text-xl font-bold text-white sm:text-3xl lg:text-4xl">
+          <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl lg:leading-[1.15]">
             Ready to Upgrade Your Power Experience?
           </h2>
-          <p className="mt-4 text-base leading-6 text-white/75">
+          <p className="mt-5 max-w-md text-base leading-7 text-white/85">
             {contactSection.intro}
           </p>
-          <ul className="mt-10 space-y-5 text-sm text-white/90">
-            <li className="flex items-start gap-3">
-              <IconPhone className="mt-0.5 shrink-0 text-cyan-300" />
+          <ul className="mt-10 space-y-5 text-sm text-white sm:text-base">
+            <li>
               <a
-                href={`tel:${brand.phone.replace(/\s/g, '')}`}
-                className="hover:underline"
+                href={`tel:${brand.phone.replace(/\s/g, "")}`}
+                className="flex items-center gap-4 transition hover:opacity-90"
               >
-                {brand.phone}
+                <ContactIcon>
+                  <IconPhone className="h-5 w-5" />
+                </ContactIcon>
+                <span>{brand.phone}</span>
               </a>
             </li>
-            <li className="flex items-start gap-3">
-              <IconEnvelope className="mt-0.5 shrink-0 text-cyan-300" />
-              <a href={`mailto:${brand.email}`} className="hover:underline">
-                {brand.email}
+            <li>
+              <a
+                href={`mailto:${brand.email}`}
+                className="flex items-center gap-4 transition hover:opacity-90"
+              >
+                <ContactIcon>
+                  <IconEnvelope className="h-5 w-5" />
+                </ContactIcon>
+                <span className="break-all">{brand.email}</span>
               </a>
             </li>
-            <li className="flex items-start gap-3">
-              <IconMapPin className="mt-0.5 shrink-0 text-cyan-300" />
-              <span className="text-white/80">{brand.address}</span>
+            <li className="flex items-center gap-4">
+              <ContactIcon>
+                <IconMapPin className="h-5 w-5" />
+              </ContactIcon>
+              <span>{brand.address}</span>
             </li>
           </ul>
         </div>
-        <div className="min-w-0 rounded-2xl bg-linear-to-br from-cyan-400 via-teal-400 to-green-400 p-[2px] shadow-xl sm:rounded-3xl">
-          <form
-            onSubmit={onSubmit}
-            className="flex min-w-0 flex-col gap-4 rounded-[18px] bg-[#001428] p-5 sm:rounded-[22px] sm:p-8"
-          >
-            <label className="flex flex-col gap-2 text-sm font-medium text-white/90">
-              Full Name
+
+        <form
+          onSubmit={onSubmit}
+          className="flex min-w-0 flex-col gap-5 rounded-3xl bg-[linear-gradient(to_top_right,#0798E7_0%,#30EAA9_100%)] p-5 shadow-2xl sm:gap-6 sm:p-8 md:p-10"
+        >
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6">
+            <label className="flex flex-col gap-2">
+              <span className={labelClass}>Full Name</span>
               <input
                 required
                 name="name"
                 autoComplete="name"
-                className="rounded-xl border border-white/10 bg-white px-4 py-3 text-[#001f3f] outline-none ring-cyan-400/50 focus:ring-2"
+                placeholder="John Doe"
+                className={fieldClass}
               />
             </label>
-            <label className="flex flex-col gap-2 text-sm font-medium text-white/90">
-              Email Address
+            <label className="flex flex-col gap-2">
+              <span className={labelClass}>Email Address</span>
               <input
                 required
                 type="email"
                 name="email"
                 autoComplete="email"
-                className="rounded-xl border border-white/10 bg-white px-4 py-3 text-[#001f3f] outline-none ring-cyan-400/50 focus:ring-2"
+                placeholder="john@example.com"
+                className={fieldClass}
               />
             </label>
-            <label className="flex flex-col gap-2 text-sm font-medium text-white/90">
-              Phone Number
+            <label className="flex flex-col gap-2">
+              <span className={labelClass}>Phone Number</span>
               <input
                 required
                 type="tel"
                 name="phone"
                 autoComplete="tel"
-                className="rounded-xl border border-white/10 bg-white px-4 py-3 text-[#001f3f] outline-none ring-cyan-400/50 focus:ring-2"
+                placeholder="+234 0000 000"
+                className={fieldClass}
               />
             </label>
-            <label className="flex flex-col gap-2 text-sm font-medium text-white/90">
-              Project Type
+            <label className="flex flex-col gap-2">
+              <span className={labelClass}>Project Type</span>
               <select
                 name="projectType"
-                className="rounded-xl border border-white/10 bg-white px-4 py-3 text-[#001f3f] outline-none ring-cyan-400/50 focus:ring-2"
+                className={`${fieldClass} appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22 fill=%22none%22%3E%3Cpath d=%22M1 1.5L6 6.5L11 1.5%22 stroke=%22%23023048%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E')] bg-size-[12px] bg-position-[right_1rem_center] bg-no-repeat pr-10`}
                 defaultValue={projectTypes[0]}
               >
                 {projectTypes.map((opt) => (
@@ -99,23 +131,26 @@ export function Contact() {
                 ))}
               </select>
             </label>
-            <label className="flex flex-col gap-2 text-sm font-medium text-white/90">
-              Your Message
-              <textarea
-                required
-                name="message"
-                rows={4}
-                className="resize-y rounded-xl border border-white/10 bg-white px-4 py-3 text-[#001f3f] outline-none ring-cyan-400/50 focus:ring-2"
-              />
-            </label>
-            <button
-              type="submit"
-              className="mt-2 w-full rounded-xl bg-[#001f3f] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#002a52] sm:w-auto"
-            >
-              Submit Consultation Request
-            </button>
-          </form>
-        </div>
+          </div>
+
+          <label className="flex flex-col gap-2">
+            <span className={labelClass}>How Can We Help?</span>
+            <textarea
+              required
+              name="message"
+              rows={4}
+              placeholder="Tell us about your energy needs..."
+              className={`${fieldClass} min-h-[120px] resize-y`}
+            />
+          </label>
+
+          <button
+            type="submit"
+            className="mt-1 w-full cursor-pointer rounded-xl bg-[#023048] px-4 py-4 text-sm font-semibold text-white transition hover:bg-[#01253a]"
+          >
+            Submit Consultation Request
+          </button>
+        </form>
       </div>
     </section>
   );

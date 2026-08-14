@@ -1,66 +1,126 @@
 "use client";
 
-import { useState } from "react";
-import { images, testimonials } from "@/content/landing";
+import { useEffect, useState } from "react";
+import { testimonials } from "@/content/landing";
 import { sectionInner } from "@/lib/section";
 import { MarketingImage } from "@/components/landing/MarketingImage";
 
 export function Testimonials() {
   const [i, setI] = useState(0);
+  const [paused, setPaused] = useState(false);
   const t = testimonials[i];
+  const next = testimonials[(i + 1) % testimonials.length];
+
+  function prev() {
+    setI((v) => (v - 1 + testimonials.length) % testimonials.length);
+  }
+
+  function nextSlide() {
+    setI((v) => (v + 1) % testimonials.length);
+  }
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setI((v) => (v + 1) % testimonials.length);
+    }, 7000);
+    return () => window.clearInterval(id);
+  }, [paused]);
 
   return (
-    <section className="bg-linear-to-bl from-[#30EAA9] to-[#0798E7] py-12 sm:py-16 md:py-20">
+    <section className="bg-[linear-gradient(to_top_right,#0798E7_0%,#30EAA9_100%)] py-12 sm:py-16 md:py-20 lg:flex lg:h-[912px] lg:min-h-[912px] lg:items-center lg:py-0">
       <div className={sectionInner}>
-        <div className="mx-auto w-full max-w-8xl text-center">
+        <div className="mx-auto w-full text-center">
           <p className="text-sm font-bold uppercase tracking-widest text-white/90">
             Testimonials
           </p>
-          <h2 className="mx-auto mt-3 max-w-[680px] px-1 text-xl font-bold text-[#023048] sm:text-3xl lg:text-5xl">
-            <span className="block sm:inline">Hear From Those Who Power </span>
-            <span className="block sm:inline">the Future With Us</span>
+          <h2 className="mx-auto mt-3 max-w-[720px] px-1 text-xl font-bold text-[#023048] sm:text-3xl lg:text-5xl">
+            Hear From Those Who Power the Future With Us
           </h2>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
-            {testimonials.map((item) => (
-              <span
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {testimonials.map((item, idx) => (
+              <button
                 key={item.name}
-                className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-[#001428]/20 bg-white text-xs font-semibold text-[#001428]"
-                aria-hidden
+                type="button"
+                onClick={() => setI(idx)}
+                aria-label={`Show testimonial from ${item.name}`}
+                aria-current={idx === i}
+                className={`relative h-11 w-11 overflow-hidden rounded-full border-2 transition ${
+                  idx === i
+                    ? "border-[#C5F015]"
+                    : "border-white/80 opacity-90 hover:opacity-100"
+                }`}
               >
-                {item.name
-                  .split(' ')
-                  .map((w) => w[0])
-                  .join('')}
-              </span>
+                <MarketingImage
+                  src={item.avatar}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="44px"
+                />
+              </button>
             ))}
           </div>
-          <div className="relative mt-10 w-full">
-            <div className="flex flex-col gap-8 md:flex-row md:items-stretch w-full">
-              <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-3xl md:h-auto md:min-h-0 md:w-[309px]">
+
+          <div
+            className="relative mt-10 w-full"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            <div className="flex items-stretch gap-4 sm:gap-6 lg:gap-4">
+              <div className="relative mr-8 h-64 w-full shrink-0 overflow-hidden rounded-3xl sm:h-80 md:h-auto md:w-[280px] lg:h-[332px] lg:w-[309px]">
                 <MarketingImage
-                  src={images.batteryRack}
-                  alt={t.name}
+                  key={t.image}
+                  src={t.image}
+                  alt=""
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 309px"
+                  sizes="(max-width:768px) 100vw, 309px"
                 />
               </div>
-              <figure className="flex w-full min-w-0 max-w-2xl flex-1 flex-col rounded-2xl bg-white p-6 text-left shadow-xl sm:rounded-3xl sm:p-10 md:mx-0">
-                <blockquote className="text-left text-base leading-relaxed text-slate-700 sm:text-lg">
-                  “{t.quote}”
-                </blockquote>
-                <figcaption className="mt-6 text-left">
-                  <p className="font-semibold text-[#001f3f]">{t.name}</p>
-                  <p className="text-sm text-slate-600">{t.role}</p>
-                </figcaption>
+
+              <figure className="relative flex h-auto min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-3xl bg-white p-6 text-left shadow-xl sm:p-8 md:p-10 lg:h-[332px] lg:min-h-[332px]">
+                <svg
+                  aria-hidden
+                  className="pointer-events-none absolute left-5 top-4 z-0 h-10 w-12 text-[#94A3B8]/20 sm:left-7 sm:top-5 sm:h-12 sm:w-14 md:left-8"
+                  viewBox="0 0 80 64"
+                  fill="currentColor"
+                >
+                  <path d="M0 36.8C0 22.4 7.5 12.3 22.4 6.4L28.8 16C20.3 19.7 16 25.1 16 32H30.4V64H0V36.8ZM49.6 36.8C49.6 22.4 57.1 12.3 72 6.4L78.4 16C69.9 19.7 65.6 25.1 65.6 32H80V64H49.6V36.8Z" />
+                </svg>
+                <div className="relative z-10 flex min-h-0 flex-1 flex-col">
+                  <blockquote className="text-base leading-relaxed text-[#002D4C] sm:text-lg md:text-xl md:leading-8">
+                    {t.quote}
+                  </blockquote>
+                  <figcaption className="mt-auto flex items-center gap-3 pt-6">
+                    <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
+                      <MarketingImage
+                        src={t.avatar}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="48px"
+                      />
+                    </div>
+                    <div className="min-w-0 text-left">
+                      <p className="font-bold text-[#002D4C]">{t.name}</p>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-[#94A3B8]">
+                        {t.role}
+                      </p>
+                    </div>
+                  </figcaption>
+                </div>
               </figure>
-              <div className="relative h-56 w-full shrink-0 overflow-hidden rounded-3xl md:h-auto md:min-h-0 md:w-[309px]">
+
+              <div className="relative hidden h-64 w-30 shrink-0 overflow-hidden rounded-l-3xl sm:block sm:h-80 md:w-[180px] lg:h-[332px] lg:w-[220px]">
                 <MarketingImage
-                  src={images.batteryRack}
-                  alt={t.name}
+                  key={next.image}
+                  src={next.image}
+                  alt=""
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 309px"
+                  sizes="220px"
                 />
               </div>
             </div>
@@ -68,36 +128,47 @@ export function Testimonials() {
             <div className="mt-8 flex items-center justify-center gap-4">
               <button
                 type="button"
-                onClick={() =>
-                  setI(
-                    (v) => (v - 1 + testimonials.length) % testimonials.length,
-                  )
-                }
-                className="rounded-full border border-[#001428]/30 bg-white/80 px-3 py-2 text-sm font-medium text-[#001428] transition hover:bg-white"
+                onClick={prev}
+                className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-white/70 text-white transition hover:bg-white/15"
                 aria-label="Previous testimonial"
               >
-                ←
-              </button>
-              <div className="flex gap-2">
-                {testimonials.map((_, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setI(idx)}
-                    className={`h-2.5 w-2.5 rounded-full transition ${
-                      idx === i ? 'bg-[#001428]' : 'bg-[#001428]/25'
-                    }`}
-                    aria-label={`Show testimonial ${idx + 1}`}
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden
+                >
+                  <path
+                    d="M15 6l-6 6 6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   />
-                ))}
-              </div>
+                </svg>
+              </button>
               <button
                 type="button"
-                onClick={() => setI((v) => (v + 1) % testimonials.length)}
-                className="rounded-full border border-[#001428]/30 bg-white/80 px-3 py-2 text-sm font-medium text-[#001428] transition hover:bg-white"
+                onClick={nextSlide}
+                className="flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#023048] text-white transition hover:bg-[#01253a]"
                 aria-label="Next testimonial"
               >
-                →
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden
+                >
+                  <path
+                    d="M9 6l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </button>
             </div>
           </div>

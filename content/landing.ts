@@ -56,6 +56,7 @@ export const servicesSection = {
   title: 'Power Backup Solution Integration',
   intro:
     'We don’t just install panels; we build intelligent energy that satisfy your everyday needs.',
+  imageTags: ['Sales Services', 'Maintenance', 'Repair'],
 } as const;
 
 export const servicesAccordion = [
@@ -89,7 +90,7 @@ export const servicesAccordion = [
 export const productsSection = {
   eyebrow: 'Our SERVICES',
   title: 'Our Product and Services',
-  ctaLabel: 'Know More',
+  ctaLabel: 'Learn More',
 } as const;
 
 export const productChecklist = [
@@ -141,20 +142,38 @@ export const contactSection = {
 export const testimonials = [
   {
     quote:
-      'Downtime used to cost us every rainy season. Fine Technology sized the UPS and solar stack properly — we have not dropped load in eighteen months.',
+      'Partnering with this solar team was one of the best decisions for our farm and our future. Not only did our energy costs drop dramatically, but we became part of a cleaner, greener initiative.',
     name: 'James Wilson',
-    role: 'Head of Operations, PTB',
+    role: 'Dairy Farm Owner',
+    image: images.batteryRack,
+    avatar:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80',
   },
   {
     quote:
       'Their team documented every cable run and trained our facilities staff. Support calls are rare now.',
     name: 'Adaeze Okafor',
     role: 'Facilities Manager',
+    image: images.industrialRoom,
+    avatar:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=160&h=160&q=80',
   },
   {
     quote:
       'Clear proposals, realistic timelines, and they stood behind the commissioning tests.',
     name: 'Ibrahim Musa',
     role: 'Project Director',
+    image: images.projectMain,
+    avatar:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=160&h=160&q=80',
+  },
+  {
+    quote:
+      'Downtime used to cost us every rainy season. Fine Technology sized the UPS and solar stack properly — we have not dropped load in eighteen months.',
+    name: 'Chinedu Okeke',
+    role: 'Head of Operations',
+    image: images.batteryUnit,
+    avatar:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80',
   },
 ] as const;
