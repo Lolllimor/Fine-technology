@@ -29,10 +29,10 @@ export async function TrustedBy() {
       aria-label="Trusted by"
       className="overflow-hidden border-y-[10px] border-[#023048] bg-white sm:border-y-[12px]"
     >
-      <div className="flex flex-col gap-6 py-7 sm:gap-8 sm:py-9 lg:flex-row lg:items-center lg:gap-0 lg:py-10">
-        <div
-          className={`${sectionInner} hidden w-full shrink-0 lg:block lg:w-auto lg:max-w-none lg:pr-10 xl:pr-14`}
-        >
+      <div
+        className={`${sectionInner} flex flex-col gap-6 py-7 sm:gap-8 sm:py-9 lg:flex-row lg:items-center lg:gap-10 lg:py-10 xl:gap-14`}
+      >
+        <div className="hidden shrink-0 lg:block">
           <p
             className={`text-[11px] font-bold uppercase tracking-[0.18em] sm:text-xs md:text-sm ${textGradient}`}
           >
