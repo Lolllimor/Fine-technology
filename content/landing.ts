@@ -22,11 +22,11 @@ export const images = {
   homesPowered:
     'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJxz4FtcBPylkf4XmwxF0OD8qhCabLd5QsHYA2t',
   heroHouse:
-    'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJx69hEJ3AxVa1plcnIGJDwBxej4otX9hC5vFRu',
+    'https://res.cloudinary.com/dobqce531/image/upload/v1786755702/fine-technology/gallery/woi9fyx930cir0ohezqb.png',
   batteryRack:
-    'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJxSNAIvH7c08K1JC7UHbirXkyLaE3zRYfoxteu',
+    'https://res.cloudinary.com/dobqce531/image/upload/v1786761071/fine-technology/gallery/w2iekg1aa5phjvpz6xr4.png',
   industrialRoom:
-    'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJx8dFoBVtLKEOg9plhGNesyoVCWYqX3MTuDbar',
+    'https://res.cloudinary.com/dobqce531/image/upload/v1786760801/fine-technology/gallery/nvn1pmzjjmlwxedp3hbg.png',
   bigSol:
     'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJxlPXbRqG4lQXkBu8JTxwnhUR2fd6VjFvg1Kiz',
   solarFarm:
@@ -36,11 +36,13 @@ export const images = {
   batteryUnit:
     'https://images.unsplash.com/photo-1613665813444-6a945ab98cc1?auto=format&fit=crop&w=600&q=80',
   projectMain:
-    'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJxDmWMDhfWEkPLxaGJVHgOZpIfqY5U6Nwld9rm',
+    'https://res.cloudinary.com/dobqce531/image/upload/v1786760820/fine-technology/gallery/oppf82xigp2u9dt5mry9.png',
   projectLagos:
-    'https://v7cc5qla9j.ufs.sh/f/jEWG4Zz62IJxe67A4A2dcATfw96hgMK1EGXrRCLjB4xDvys8',
+    'https://res.cloudinary.com/dobqce531/image/upload/v1786760822/fine-technology/gallery/yap4vnthyb6yyhyu8bpg.png',
   projectAbuja:
     'https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?auto=format&fit=crop&w=900&q=80',
+  projectCommercial:
+    'https://res.cloudinary.com/dobqce531/image/upload/v1786760806/fine-technology/gallery/czsgrwqmdha80vhkpfc4.png',
 };
 
 export const about = {
@@ -114,21 +116,21 @@ export const projects = [
     title: 'PremiumTrust Bank (PTB)',
     description:
       'Critical Power / Chilled Water Cooling /Electrical Panels / Structured Cabling / CCTV / Access Control',
-    imageKey: 'projectMain' as const,
+    imageKey: 'projectLagos' as const,
     large: true,
     year: '2023',
   },
   {
     title: 'Residential Installation - Lagos',
     description: '10kVA hybrid solar + lithium storage for a smart home.',
-    imageKey: 'projectLagos' as const,
+    imageKey: 'projectMain' as const,
     large: false,
     year: '2022',
   },
   {
     title: 'Commercial Office - Abuja',
     description: 'Office tower UPS refresh and rooftop solar add-on.',
-    imageKey: 'heroHouse' as const,
+    imageKey: 'projectCommercial' as const,
     large: false,
     year: '2023',
   },

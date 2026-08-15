@@ -2,7 +2,7 @@ import { MarketingImage } from "@/components/landing/MarketingImage";
 import Link from "next/link";
 import { IconCheck } from "@/components/landing/icons";
 import { images, productChecklist, productsSection } from "@/content/landing";
-import { sectionInner } from "@/lib/section";
+import { sectionInner, textGradient } from "@/lib/section";
 
 export function ProductsFeature() {
   return (
@@ -20,8 +20,10 @@ export function ProductsFeature() {
       <div
         className={`${sectionInner} relative z-10 grid w-full items-center gap-8 py-12 sm:gap-10 sm:py-16 md:gap-12 md:py-24 lg:grid-cols-2`}
       >
-        <div className="rounded-2xl bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8 md:p-16 max-w-149">
-          <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+        <div className="rounded-2xl bg-white p-6 shadow-2xl sm:rounded-3xl sm:p-8 md:p-16 lg:max-w-149">
+          <p
+            className={`text-sm font-bold uppercase tracking-widest ${textGradient}`}
+          >
             {productsSection.eyebrow}
           </p>
           <h2 className="mt-2 text-2xl font-bold text-[#023048] sm:text-3xl lg:text-5xl">

@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, type ReactNode } from "react";
+import { FormEvent, useState, type ReactNode } from "react";
 import { IconEnvelope, IconMapPin, IconPhone } from "@/components/landing/icons";
 import { brand, contactSection } from "@/content/landing";
 import { sectionInner } from "@/lib/section";
@@ -15,7 +15,7 @@ const projectTypes = [
 ] as const;
 
 const fieldClass =
-  "w-full rounded-xl border-0 bg-white px-4 py-3.5 text-sm text-[#023048] outline-none placeholder:text-[#94A3B8] ring-0 transition focus:ring-2 focus:ring-[#023048]/25";
+  "w-full rounded-xl border-0 bg-white px-4 py-3.5 text-sm text-[#023048] outline-none placeholder:text-[#94A3B8] ring-0 transition focus:ring-2 focus:ring-[#023048]/25 disabled:opacity-70";
 
 const labelClass =
   "text-xs font-bold uppercase tracking-wide text-[#023048]";
@@ -29,9 +29,49 @@ function ContactIcon({ children }: { children: ReactNode }) {
 }
 
 export function Contact() {
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle",
+  );
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          phone: data.get("phone"),
+          projectType: data.get("projectType"),
+          message: data.get("message"),
+        }),
+      });
+
+      const payload = (await res.json()) as { error?: string };
+
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMessage(payload.error ?? "Something went wrong.");
+        return;
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network error. Please try again.");
+    }
   }
+
+  const busy = status === "loading";
 
   return (
     <section
@@ -39,7 +79,7 @@ export function Contact() {
       className="scroll-mt-24 bg-[#023048] py-12 sm:py-16 md:py-20 lg:flex lg:h-174.25 lg:min-h-174.25 lg:items-center lg:py-0"
     >
       <div
-        className={`${sectionInner}  grid w-full min-w-0 items-center gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16`}
+        className={`${sectionInner} grid w-full min-w-0 items-center gap-10 sm:gap-12 lg:grid-cols-2 lg:gap-16`}
       >
         <div className="min-w-0">
           <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl lg:leading-[1.15]">
@@ -92,6 +132,7 @@ export function Contact() {
                 name="name"
                 autoComplete="name"
                 placeholder="John Doe"
+                disabled={busy}
                 className={fieldClass}
               />
             </label>
@@ -103,6 +144,7 @@ export function Contact() {
                 name="email"
                 autoComplete="email"
                 placeholder="john@example.com"
+                disabled={busy}
                 className={fieldClass}
               />
             </label>
@@ -114,6 +156,7 @@ export function Contact() {
                 name="phone"
                 autoComplete="tel"
                 placeholder="+234 0000 000"
+                disabled={busy}
                 className={fieldClass}
               />
             </label>
@@ -121,6 +164,7 @@ export function Contact() {
               <span className={labelClass}>Project Type</span>
               <select
                 name="projectType"
+                disabled={busy}
                 className={`${fieldClass} appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 viewBox=%220 0 12 8%22 fill=%22none%22%3E%3Cpath d=%22M1 1.5L6 6.5L11 1.5%22 stroke=%22%23023048%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E')] bg-size-[12px] bg-position-[right_1rem_center] bg-no-repeat pr-10`}
                 defaultValue={projectTypes[0]}
               >
@@ -140,15 +184,28 @@ export function Contact() {
               name="message"
               rows={4}
               placeholder="Tell us about your energy needs..."
+              disabled={busy}
               className={`${fieldClass} min-h-[120px] resize-y`}
             />
           </label>
 
+          {status === "success" ? (
+            <p className="rounded-xl bg-white/90 px-4 py-3 text-sm font-medium text-[#023048]">
+              Thanks — we received your request and will get back to you soon.
+            </p>
+          ) : null}
+          {status === "error" ? (
+            <p className="rounded-xl bg-[#023048]/90 px-4 py-3 text-sm font-medium text-white">
+              {errorMessage}
+            </p>
+          ) : null}
+
           <button
             type="submit"
-            className="mt-1 w-full cursor-pointer rounded-xl bg-[#023048] px-4 py-4 text-sm font-semibold text-white transition hover:bg-[#01253a]"
+            disabled={busy}
+            className="mt-1 w-full cursor-pointer rounded-xl bg-[#023048] px-4 py-4 text-sm font-semibold text-white transition hover:bg-[#01253a] disabled:cursor-not-allowed disabled:opacity-70"
           >
-            Submit Consultation Request
+            {busy ? "Sending…" : "Submit Consultation Request"}
           </button>
         </form>
       </div>

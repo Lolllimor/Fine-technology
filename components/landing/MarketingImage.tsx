@@ -1,10 +1,12 @@
 import Image, { type ImageProps } from "next/image";
 
-
-const UFS_HOST = "v7cc5qla9j.ufs.sh";
-
 function defaultUnoptimized(src: ImageProps["src"]): boolean {
-  return typeof src === "string" && src.includes(UFS_HOST);
+  if (typeof src !== "string") return false;
+  return (
+    src.includes("v7cc5qla9j.ufs.sh") ||
+    src.includes("res.cloudinary.com") ||
+    src.includes(".supabase.co/storage/")
+  );
 }
 
 export function MarketingImage(props: ImageProps) {

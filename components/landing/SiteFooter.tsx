@@ -1,14 +1,63 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { brand } from "@/content/landing";
 import { sectionInner } from "@/lib/section";
 
+const FOOTER_LEAD_MESSAGE =
+  "Requested a consultation session via the website footer.";
+
 export function SiteFooter() {
-  function onNewsletter(e: FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle",
+  );
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function onConsultation(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const email = String(new FormData(form).get("email") ?? "").trim();
+
+    if (!email) return;
+
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const localPart = email.split("@")[0] || "Visitor";
+      const name = localPart
+        .replace(/[._-]+/g, " ")
+        .replace(/\b\w/g, (c) => c.toUpperCase());
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: "Not provided",
+          projectType: "Other",
+          message: FOOTER_LEAD_MESSAGE,
+        }),
+      });
+
+      const payload = (await res.json()) as { error?: string };
+      if (!res.ok) {
+        setStatus("error");
+        setErrorMessage(payload.error ?? "Something went wrong.");
+        return;
+      }
+
+      setStatus("success");
+      form.reset();
+    } catch {
+      setStatus("error");
+      setErrorMessage("Network error. Please try again.");
+    }
   }
+
+  const busy = status === "loading";
 
   return (
     <footer className="bg-black py-12 text-white sm:py-16">
@@ -24,50 +73,44 @@ export function SiteFooter() {
               your infrastructure
             </p>
           </div>
-          <form
-            onSubmit={onNewsletter}
-            className="flex w-full max-w-md flex-col gap-2 overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0a] p-2 sm:flex-row sm:items-stretch sm:gap-0 sm:rounded-full sm:p-0 sm:pl-4"
-          >
-            <label className="sr-only" htmlFor="footer-email">
-              Email
-            </label>
-            <input
-              id="footer-email"
-              type="email"
-              name="email"
-              placeholder="Your email"
-              className="min-w-0 flex-1 rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/40 sm:border-0 sm:py-3 sm:pl-0 sm:pr-2"
-            />
-            <button
-              type="submit"
-              className="shrink-0 rounded-xl bg-green-400 px-5 py-3 text-sm font-semibold text-black transition hover:bg-green-300 sm:rounded-none sm:rounded-r-full"
-              aria-label="Submit email"
+          <div className="w-full max-w-md">
+            <form
+              onSubmit={onConsultation}
+              className="flex w-full flex-col gap-2 overflow-hidden rounded-2xl border border-white/15 bg-[#0a0a0a] p-2 sm:flex-row sm:items-stretch sm:gap-0 sm:rounded-full sm:p-0 sm:pl-4"
             >
-              →
-            </button>
-          </form>
+              <label className="sr-only" htmlFor="footer-email">
+                Email
+              </label>
+              <input
+                id="footer-email"
+                required
+                type="email"
+                name="email"
+                placeholder="Your email"
+                disabled={busy}
+                className="min-w-0 flex-1 rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-white outline-none placeholder:text-white/40 disabled:opacity-60 sm:border-0 sm:py-3 sm:pl-0 sm:pr-2"
+              />
+              <button
+                type="submit"
+                disabled={busy}
+                className="shrink-0 rounded-xl bg-green-400 px-5 py-3 text-sm font-semibold text-black transition hover:bg-green-300 disabled:cursor-not-allowed disabled:opacity-60 sm:rounded-none sm:rounded-r-full"
+                aria-label="Submit consultation request"
+              >
+                {busy ? '…' : '→'}
+              </button>
+            </form>
+            {status === 'success' ? (
+              <p className="mt-2 text-xs text-green-400">
+                Thanks — we received your request and will be in touch.
+              </p>
+            ) : null}
+            {status === 'error' ? (
+              <p className="mt-2 text-xs text-red-400">{errorMessage}</p>
+            ) : null}
+          </div>
         </div>
         <div className="grid gap-8 py-10 sm:grid-cols-3 sm:gap-10 sm:py-12">
-          <div>
-            <p className="text-sm text-white/55">
-              © {new Date().getFullYear()} {brand.name}. All rights reserved.
-            </p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">Contact Us</p>
-            <p className="mt-2 text-sm text-white/70">{brand.phone}</p>
-            <p className="text-sm text-white/70">{brand.email}</p>
-          </div>
-          <div>
-            <p className="text-sm font-semibold">Location</p>
-            <p className="mt-2 text-sm text-white/70">{brand.address}</p>
-          </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <p className="text-sm text-white/55">
-            © 2024 {brand.name}. All Rights Reserved.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 pb-4 text-sm sm:justify-end">
+          <div className="flex flex-wrap gap-4 pb-4 text-sm">
             <Link
               href="https://twitter.com"
               className="text-white/50 hover:text-white"
@@ -154,6 +197,20 @@ export function SiteFooter() {
               </svg>
             </Link>
           </div>
+          <div>
+            <p className="text-sm font-semibold">Contact Us</p>
+            <p className="mt-2 text-sm text-white/70">{brand.phone}</p>
+            <p className="text-sm text-white/70">{brand.email}</p>
+          </div>
+          <div>
+            <p className="text-sm font-semibold">Location</p>
+            <p className="mt-2 text-sm text-white/70">{brand.address}</p>
+          </div>
+        </div>
+        <div>
+          <p className="text-sm text-white/55">
+            © {new Date().getFullYear()} {brand.name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
