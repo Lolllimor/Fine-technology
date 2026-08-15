@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/admin/PageHeader";
 import { ImageIcon, InboxIcon, QuoteIcon } from "@/components/admin/icons";
 
 export const metadata: Metadata = {
-  title: "Dashboard · Admin — Fine Technology",
+  title: { absolute: "Dashboard · Admin — Fine Technology" },
 };
 
 export default async function AdminDashboardPage() {
