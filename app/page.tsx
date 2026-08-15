@@ -7,6 +7,7 @@ import { ProductsFeature } from "@/components/landing/ProductsFeature";
 import { ServicesAccordion } from "@/components/landing/ServicesAccordion";
 import { SiteFooter } from "@/components/landing/SiteFooter";
 import { Testimonials } from "@/components/landing/Testimonials";
+import { TrustedBy } from "@/components/landing/TrustedBy";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <LandingCards />
       <About />
+      <TrustedBy />
       <ServicesAccordion />
       <ProductsFeature />
       <Portfolio />

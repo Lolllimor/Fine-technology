@@ -1,7 +1,7 @@
 import { MarketingImage } from "@/components/landing/MarketingImage";
 import Link from "next/link";
 import { images, portfolioSection, projects } from "@/content/landing";
-import { sectionInner } from "@/lib/section";
+import { sectionInner, textGradient } from "@/lib/section";
 
 const img = (key: keyof typeof images) => images[key];
 
@@ -13,19 +13,21 @@ export function Portfolio() {
       <div className={sectionInner}>
         <div className="flex flex-col gap-6 sm:gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="min-w-0 max-w-xl space-y-3 sm:space-y-4">
-            <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+            <p
+              className={`text-sm font-bold uppercase tracking-widest ${textGradient}`}
+            >
               {portfolioSection.eyebrow}
             </p>
             <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl lg:leading-tight">
               {portfolioSection.title}
             </h2>
           </div>
-          <div className="flex min-w-0 w-full max-w-[377px] flex-col items-stretch gap-4 lg:items-end lg:text-right">
+          <div className="flex min-w-0 w-full max-w-94.25 flex-col items-stretch gap-4 lg:items-end lg:text-right">
             <p className="text-sm leading-6 text-white/90 sm:text-base">
               {portfolioSection.intro}
             </p>
             <Link
-              href="#contact"
+              href="/projects"
               className="inline-flex w-full justify-center rounded-full bg-linear-to-r from-[#30EAA9] to-[#0798E7] px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:opacity-95 sm:w-auto sm:px-8"
             >
               {portfolioSection.ctaLabel}

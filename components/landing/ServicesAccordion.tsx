@@ -8,7 +8,7 @@ import {
   IconPlusAccordion,
 } from "@/components/landing/icons";
 import { images, servicesAccordion, servicesSection } from "@/content/landing";
-import { sectionInner } from "@/lib/section";
+import { sectionInner, textGradient } from "@/lib/section";
 
 export function ServicesAccordion() {
   const [open, setOpen] = useState(0);
@@ -21,7 +21,9 @@ export function ServicesAccordion() {
       <div className={`${sectionInner} flex flex-col gap-12 lg:gap-16`}>
         <div className="flex w-full flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-130 space-y-4">
-            <p className="text-sm font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
+            <p
+              className={`text-sm font-bold uppercase tracking-widest ${textGradient}`}
+            >
               {servicesSection.eyebrow}
             </p>
             <h2 className="text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl lg:text-[48px] lg:leading-12">

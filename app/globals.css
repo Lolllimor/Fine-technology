@@ -18,6 +18,28 @@
   --font-technovier: "Technovier", var(--font-inter), system-ui, sans-serif;
   --color-ft-navy: var(--ft-navy);
   --color-ft-navy-deep: var(--ft-navy-deep);
+  --animate-trusted-marquee: trusted-marquee 28s linear infinite;
+}
+
+@keyframes trusted-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(var(--trusted-loop, -50%));
+  }
+}
+
+@media (min-width: 768px) {
+  .animate-trusted-marquee {
+    animation-duration: 40s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-trusted-marquee {
+    animation: none !important;
+  }
 }
 
 html {

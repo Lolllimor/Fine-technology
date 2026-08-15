@@ -4,7 +4,7 @@ import { MarketingImage } from "@/components/landing/MarketingImage";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { about, images } from "@/content/landing";
-import { sectionInner } from "@/lib/section";
+import { sectionInner, textGradient } from "@/lib/section";
 
 const gallery = [
   images.batteryRack,
@@ -74,14 +74,14 @@ export function About() {
           </div>
 
           <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
-            <p className="text-xs font-bold uppercase tracking-widest bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent sm:text-sm">
+            <p
+              className={`text-xs font-bold uppercase tracking-widest sm:text-sm ${textGradient}`}
+            >
               {about.eyebrow}
             </p>
             <h2 className="text-xl font-bold leading-snug text-white sm:text-2xl sm:leading-tight md:text-3xl lg:text-[2.75rem] lg:leading-[1.15]">
               <span>{about.headlineBefore}</span>
-              <span className="bg-linear-to-r from-[#30EAA9] to-[#0798E7] bg-clip-text text-transparent">
-                {about.headlineAccent}
-              </span>
+              <span className={textGradient}>{about.headlineAccent}</span>
             </h2>
 
             <div className="grid w-full max-w-md grid-cols-2 gap-x-4 gap-y-6 sm:gap-x-8 sm:gap-y-8 md:gap-12">
