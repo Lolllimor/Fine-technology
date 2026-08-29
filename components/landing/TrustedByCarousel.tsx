@@ -31,16 +31,14 @@ export function TrustedByCarousel({ logos }: { logos: TrustedLogo[] }) {
         {track.map((logo, index) => (
           <li
             key={`${logo.id}-${index}`}
-            className="flex h-8 w-24 shrink-0 items-center justify-center sm:h-10 sm:w-28 md:h-12 md:w-36"
+            className="relative h-8 w-24 shrink-0 sm:h-10 sm:w-28 md:h-12 md:w-36"
             aria-hidden={index >= logos.length}
           >
             <MarketingImage
               src={logo.src}
               alt={index < logos.length ? logo.alt || "Client logo" : ""}
-              width={144}
-              height={48}
-              className="max-h-8 max-w-full object-contain opacity-70 grayscale sm:max-h-10 md:max-h-12"
-              style={{ width: "auto", height: "auto" }}
+              fill
+              className="object-contain opacity-70 grayscale"
               sizes="(max-width:640px) 96px, (max-width:768px) 112px, 144px"
             />
           </li>

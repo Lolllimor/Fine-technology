@@ -3,7 +3,7 @@
 export const brand = {
   name: 'Fine Technology',
   phone: '+234 8033618578',
-  email: 'Finetechnologyofficial@gmail.com',
+  email: 'isaac.oyindamola@finetechnology.org',
   address: '26, Ebunolorun Street, Shomolu, Lagos.',
 };
 
